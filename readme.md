@@ -18,6 +18,8 @@
     "UpstreamPathTemplate": "/news/{url}", //上游路径配置
 
     swagger文档内是下游地址，那么我们需要将下游地址替换为上游地址，才可以正常请求api。
+    
+![avatar](https://github.com/xuyiazl/Ocelot.Swagger/blob/master/3.png)
 
 #### 使用方式
 
