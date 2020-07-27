@@ -1,25 +1,29 @@
 ﻿
 ### Ocelot + Consul 微服务合并swagger文档
 
-如果你只使用Ocelot 那么请移步(https://github.com/Rwing/OcelotSwagger)
-本文是针对（https://github.com/Rwing/OcelotSwagger）进行了大重构。
+如果你只使用Ocelot 那么请移步[OcelotSwagger](https://github.com/Rwing/OcelotSwagger)本文是在该项目后进行了大重构。
 
-1、解决微服务swagger文档归类合并的问题
-2、解决合并后无法在swagger中直接请求问题
-3、解决自定义header Authorize传参的问题
+- 解决微服务swagger文档归类合并的问题
+- 解决合并后无法在swagger中直接请求问题
+- 解决自定义header Authorize传参的问题
 
-思路就是：
+#### 思路就是：
     从微服务中拉取swagger.json，并利用中间件对swagger内的内容进行替换。
     因为在拉取到的swagger配置是针对微服务当前域的，所以在网关内是无法直接请求地址的。
     我们需要将swagger里的请求地址批量替换为上游地址。
 
 比如微服务地址上下游配置：
-    "DownstreamPathTemplate": "/api/{url}", //下游转发配置
-    "UpstreamPathTemplate": "/news/{url}", //上游路径配置
 
-    swagger文档内是下游地址，那么我们需要将下游地址替换为上游地址，才可以正常请求api。
-    
-![avatar](https://github.com/xuyiazl/Ocelot.Swagger/raw/master/3.png)
+```json
+"DownstreamPathTemplate": "/api/{url}", //下游转发配置
+"UpstreamPathTemplate": "/news/{url}", //上游路径配置
+```
+
+swagger文档内是下游地址，那么我们需要将下游地址替换为上游地址，才可以正常请求api。
+
+![avatar](http://www.3624091.com/github/1.png)
+![avatar](http://www.3624091.com/github/2.png)
+![avatar](http://www.3624091.com/github/3.png)
 
 #### 使用方式
 
